@@ -8,6 +8,7 @@ const initdb = async () =>
         return;
       }
       db.createObjectStore('jate', { keyPath: 'id', autoIncrement: true });
+      // db.createObjectStore('jate', { autoIncrement: true });
       console.log('jate database created');
     },
   });
@@ -18,7 +19,7 @@ export const putDb = async (content) => {
   const tx = jate.transaction('jate', 'readwrite');
 
   const store = tx.objectStore('jate');
-  const request = store.add({value: content});
+  const request = store.put({ id: 1, value: content }); // becasue the id in this object matches the id set in the key path.
   const result = await request;
 
   return result;
@@ -30,9 +31,10 @@ export const getDb = async () => {
   const tx = jate.transaction('jate', 'readonly');
 
   const store = tx.objectStore('jate');
-  const request = store.getAll();
+  const request = store.get(1);
   const result = await request;
 
+  console.log('result.value', result);
   return result;
 };
 
