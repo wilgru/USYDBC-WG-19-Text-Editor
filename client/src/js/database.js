@@ -8,7 +8,6 @@ const initdb = async () =>
         return;
       }
       db.createObjectStore('jate', { keyPath: 'id', autoIncrement: true });
-      // db.createObjectStore('jate', { autoIncrement: true });
       console.log('jate database created');
     },
   });
@@ -31,11 +30,12 @@ export const getDb = async () => {
   const tx = jate.transaction('jate', 'readonly');
 
   const store = tx.objectStore('jate');
-  const request = store.get(1);
+  const request = store.get(1); // theres only record at index 1
   const result = await request;
 
-  console.log('result.value', result);
-  return result;
+  // returns a string, which is stored in .value
+  console.info('result value:', result.value);
+  return result.value;
 };
 
 initdb();
