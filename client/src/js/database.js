@@ -34,7 +34,7 @@ export const getDb = async () => {
   const result = await request;
 
   // returns a string, which is stored in .value
-  console.info('result value:', result.value);
+  console.log('result value:', result.value);
   return result.value;
 };
 
