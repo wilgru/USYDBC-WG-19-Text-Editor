@@ -34,7 +34,11 @@ export const getDb = async () => {
   const result = await request;
 
   // returns a string, which is stored in .value
-  console.log('result value:', result.value);
+  if (result.value) {
+    console.log('Value found in object store (result.value):', result.value);
+  } else {
+    console.log("No value found in object store.");
+  }
   return result.value;
 };
 
